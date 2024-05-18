@@ -3,15 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Student;
 
 class StudentController extends Controller
-{
+{   
+    protected $student;
+
+    public function __construct(){
+        $this->student = new Student();
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return $this->student->all();
     }
 
     /**
@@ -19,7 +26,7 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $this->student->create($request->all());
     }
 
     /**
@@ -27,7 +34,7 @@ class StudentController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $student = $this->student->find($id);
     }
 
     /**
@@ -35,7 +42,9 @@ class StudentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $student = $this->student->find($id);
+        $student->update($request->all());
+        return $student;
     }
 
     /**
@@ -43,6 +52,7 @@ class StudentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $student = $this->student->find($id);
+        return $student->delete();
     }
 }
