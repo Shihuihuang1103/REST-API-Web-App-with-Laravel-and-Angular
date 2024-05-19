@@ -15,6 +15,7 @@ class StudentController extends Controller
 
     /**
      * Display a listing of the resource.
+     * GET ALL
      */
     public function index()
     {
@@ -23,6 +24,7 @@ class StudentController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * POST
      */
     public function store(Request $request)
     {
@@ -31,14 +33,16 @@ class StudentController extends Controller
 
     /**
      * Display the specified resource.
-     */
+     * GET ONE
+     */ 
     public function show(string $id)
     {
-        $student = $this->student->find($id);
+        return $student = $this->student->find($id);
     }
 
     /**
      * Update the specified resource in storage.
+     * PUT
      */
     public function update(Request $request, string $id)
     {
